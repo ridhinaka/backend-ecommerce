@@ -18,6 +18,11 @@ var Routes = /** @class */ (function () {
         this.cart();
         this.order();
     }
+    Routes.prototype.routes = function () {
+        this.router.get("/", function (req, res) {
+            res.status(200).json({ msg: "Welcome to mobile legend" });
+        });
+    };
     Routes.prototype.user = function () {
         this.router.use(user_route_1.default);
     };

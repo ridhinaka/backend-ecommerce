@@ -1,6 +1,6 @@
 import {User} from '../models/Users'
 import {Cart} from '../models/Cart'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import {Request,Response,NextFunction} from 'express'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'

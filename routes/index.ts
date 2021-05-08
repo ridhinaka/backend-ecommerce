@@ -17,6 +17,11 @@ class Routes {
       this.order()
   }
   
+  public routes(): void {
+    this.router.get("/", (req: Request, res: Response) => {
+      res.status(200).json({ msg: "welcome to mobile legend" });
+    })
+  }
   public user(): void{
       this.router.use(userRoutes)
   }

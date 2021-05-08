@@ -1,0 +1,166 @@
+ Cart.findByIdAndUpdate(id,{$push: { product_id: req.body.product_id },quantity:req.body.quantity},{new:true})
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((err) => {
+        res.status(500).json({ msg: err });
+      });
+
+       static addToCart(req: Request, res: Response) {
+    const { id } = req.params;
+    const { product_id,quantity } = req.body
+
+    Product.findById(product_id)
+    .then((find_product) => {
+      if(find_product.stock > 0){
+        Cart.findById(id)
+        .then((cart_add) => {
+          console.log("tokai")
+          const new_quantity = parseInt(quantity) + cart_add.quantity
+          const convertArray = Object.assign({},cart_add.product_id)
+          // console.log(convertArray)
+          if(!convertArray){  
+            console.log(product_id)
+            Cart.findByIdAndUpdate(id,
+              {
+                $push:{product_id: product_id},quantity:new_quantity,
+                $inc:{total_price: find_product.price * quantity}
+              },{new:true})
+            .then((cart_id) => {
+              if(cart_id){
+                Product.findByIdAndUpdate(find_product,{$inc:{stock:-quantity}})
+                .then((decrease_stock) => {
+                })
+                .catch((err) => {
+                  res.status(500).json({ msg: err });
+                });
+              }
+              res.status(200).json({message:cart_id})
+            })
+            .catch((err) => {
+              res.status(500).json({ msg: err });
+            });
+          }else{
+            console.log("ridhi")
+            Cart.findByIdAndUpdate(id,{
+              $push:{quantity:new_quantity}
+            },{new:true})
+            .then((cart_push) => {
+              console.log(cart_push)
+            })
+            .catch((err) => {
+              res.status(500).json({ msg: err });
+            });
+          }    
+        })
+      }
+      else{
+        res.status(200).json({msg: "stock not available"})
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ msg: err });
+    });
+  }
+    const findProduct = await Product.findById(product_id)
+    const findCart = await Cart.findById(id)
+    
+    try{
+      if(findProduct.stock > 0 && findCart.product_id === product_id ){
+        console.log("yada yada yada")
+        const new_quantity = parseInt(quantity) + findCart.quantity
+        const findCartandUpdate = await  
+        Cart.findByIdAndUpdate(id,
+          {
+            $push:{product_id: product_id},quantity:new_quantity,
+            $inc:{total_price: findProduct.price * quantity}
+          },{new:true})
+      }
+      res.status(200).json({message:"ridhi naka gantenf sekali allahuakbar"})
+    }
+    catch{
+
+    }
+
+
+    Product.findById(product_id)
+      .then((find_product) => {
+        if (find_product.stock > 0) {
+          Cart.findById(id)
+          .then((cart_add) => {    
+              console.log("ridhi")
+              const new_quantity = parseInt(quantity) + cart_add.quantity;
+              Cart.findByIdAndUpdate(
+                id,
+                {
+                  $push: { product_id: product_id },
+                  quantity: new_quantity,
+                  $inc: { total_price: find_product.price * quantity },
+                },
+                { new: true }
+              )
+                .then((cart_id) => {
+                  if (cart_id) {
+                    Product.findByIdAndUpdate(find_product, {
+                      $inc: { stock: - quantity },
+                    })
+                      .then((decrease_stock) => {})
+                      .catch((err) => {
+                        res.status(500).json({ msg: err });
+                      });
+                  }
+                  res.status(200).json({ message: cart_id });
+                })
+                .catch((err) => {
+                  res.status(500).json({ msg: err });
+                });
+          });
+        } else {
+          res.status(200).json({ msg: "stock not available" });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ msg: err });
+      });
+
+       static deleteCart(req: Request, res: Response) {
+    const { id } = req.params;
+    const { quantity, product_id } = req.body;
+
+    Product.findById(product_id)
+      .then((findProduct) => {
+        if (findProduct) {
+          Cart.findById(id)
+            .then((findCart) => { 
+              const cartQuantity = findCart.quantity - parseInt(quantity)  
+              console.log(cartQuantity)
+              for (let i = 0; i < findCart.product_id.length; i++) {              
+                if (findProduct.id === String(findCart.product_id[i])) {
+                  Cart.findByIdAndUpdate(
+                    id,
+                    { 
+                      $pull: { product_id: findProduct.id },
+                    },
+                    { multi: true }
+                  )
+                    .then((result_delete) => {
+                      res.status(200).json({ msg: "success anjing",data:result_delete });
+                    })
+                    .catch((err) => {
+                      res.status(500).json({ msg: err });
+                    });
+                } else {
+                  console.log("ridhi naka pangeran")
+                  
+                }
+              }
+            })
+            .catch((err) => {
+              res.status(500).json({ msg: err });
+            });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ msg: err });
+      });
+  }

@@ -10,8 +10,9 @@ class Routes {
   router: Router
   constructor() {
       this.router = Router()
-      this.auth()
+      this.routes()
       this.user()
+      this.auth()
       this.product()
       this.cart()
       this.order()

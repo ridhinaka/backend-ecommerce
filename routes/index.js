@@ -12,8 +12,9 @@ var auth_Jwt_1 = __importDefault(require("../middlewares/auth_Jwt"));
 var Routes = /** @class */ (function () {
     function Routes() {
         this.router = express_1.Router();
-        this.auth();
+        this.routes();
         this.user();
+        this.auth();
         this.product();
         this.cart();
         this.order();

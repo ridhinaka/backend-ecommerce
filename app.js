@@ -5,14 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./configs/db"));
-var dotenv_1 = __importDefault(require("dotenv"));
 var index_1 = __importDefault(require("./routes/index"));
 var App = /** @class */ (function () {
     function App() {
         this.app = express_1.default();
         this.plugin();
         this.routes();
-        dotenv_1.default.config();
     }
     App.prototype.plugin = function () {
         this.app.use(express_1.default.urlencoded({ extended: true }));

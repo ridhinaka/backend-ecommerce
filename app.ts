@@ -11,7 +11,7 @@ class App {
     this.app = express()
     this.plugin()
     this.routes()
-    dotenv.config()
+  
   }
 
   protected plugin(): void{

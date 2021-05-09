@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Users_1 = require("../models/Users");
-var bcrypt_1 = __importDefault(require("bcryptjs"));
+var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var userController = /** @class */ (function () {
@@ -62,10 +62,10 @@ var userController = /** @class */ (function () {
         });
     };
     userController.register_new_user = function (req, res) {
-        var salt = bcrypt_1.default.genSaltSync(10);
+        var salt = bcryptjs_1.default.genSaltSync(10);
         var newUser = {
             email: req.body.email,
-            password: bcrypt_1.default.hashSync(req.body.password, salt),
+            password: bcryptjs_1.default.hashSync(req.body.password, salt),
             userName: req.body.userName,
             phone: req.body.phone,
             default_address: req.body.default_address
@@ -84,7 +84,7 @@ var userController = /** @class */ (function () {
             if (!result) {
                 return res.status(500).json({ message: "user and password doesnt match" });
             }
-            var passwordIsValid = bcrypt_1.default.compareSync(req.body.password, result.password);
+            var passwordIsValid = bcryptjs_1.default.compareSync(req.body.password, result.password);
             if (!passwordIsValid) {
                 return res.status(500).json({ message: "user and password doesnt match" });
             }

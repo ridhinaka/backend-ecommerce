@@ -8,7 +8,7 @@ var mongoDB = /** @class */ (function () {
     function mongoDB() {
     }
     mongoDB.prototype.connectDB = function () {
-        var pathURL = 'mongodb://localhost/assgntyp2';
+        var pathURL = process.env.DB_URL;
         var connectOption = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false };
         mongoose_1.default.connect(pathURL, connectOption);
         var db = mongoose_1.default.connection;

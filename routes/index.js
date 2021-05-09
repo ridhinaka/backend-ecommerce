@@ -12,7 +12,7 @@ var auth_Jwt_1 = __importDefault(require("../middlewares/auth_Jwt"));
 var Routes = /** @class */ (function () {
     function Routes() {
         this.router = express_1.Router();
-        // this.auth()
+        this.auth();
         this.user();
         this.product();
         this.cart();
@@ -20,7 +20,7 @@ var Routes = /** @class */ (function () {
     }
     Routes.prototype.routes = function () {
         this.router.get("/", function (req, res) {
-            res.status(200).json({ msg: "Welcome to mobile legend" });
+            res.status(200).json({ msg: "welcome to mobile legend" });
         });
     };
     Routes.prototype.user = function () {

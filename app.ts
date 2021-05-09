@@ -1,7 +1,6 @@
 import { Application, Request, Response } from 'express'
 import express from 'express'
 import MongoDB from './configs/db'
-import dotenv from 'dotenv'
 import routes from './routes/index'
 
 

@@ -1,14 +1,11 @@
 import {User} from '../models/Users'
-import {Cart} from '../models/Cart'
 import bcrypt from 'bcryptjs'
 import {Request,Response,NextFunction} from 'express'
-import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 
 
 class userController {
   constructor(){
-    dotenv.config()
   }
   static async getUser (req: Request , res: Response) {
     const findUser = await User.find({})

@@ -2,6 +2,7 @@ import { Application, Request, Response } from 'express'
 import express from 'express'
 import MongoDB from './configs/db'
 import routes from './routes/index'
+import cors from 'cors'
 
 
 class App {
@@ -10,21 +11,26 @@ class App {
     this.app = express()
     this.plugin()
     this.routes()
-  
+    this.cors()
+  }
+
+  protected cors():void {
+    this.app.use(cors())
   }
 
   protected plugin(): void{
     this.app.use(express.urlencoded({extended: true}),)
-  
     MongoDB()
   }
 
   protected routes(): void{
     this.app.use(routes)
   }
+
 }
 
-// const port = process.env.PORT
+
+
 const app = new App().app
 app.listen(process.env.PORT, () => console.log(`Server running on port http://localhost:${process.env.PORT}`))
 

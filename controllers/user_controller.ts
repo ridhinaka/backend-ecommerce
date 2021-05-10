@@ -16,7 +16,6 @@ class userController {
     const  newUser =  {
       email : req.body.email,
       password : bcrypt.hashSync(req.body.password,salt),
-      userName : req.body.userName,
       phone : req.body.phone,
       default_address : req.body.default_address
     }

@@ -41,11 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Users_1 = require("../models/Users");
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
-var dotenv_1 = __importDefault(require("dotenv"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var userController = /** @class */ (function () {
     function userController() {
-        dotenv_1.default.config();
     }
     userController.getUser = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
@@ -66,7 +64,6 @@ var userController = /** @class */ (function () {
         var newUser = {
             email: req.body.email,
             password: bcryptjs_1.default.hashSync(req.body.password, salt),
-            userName: req.body.userName,
             phone: req.body.phone,
             default_address: req.body.default_address
         };

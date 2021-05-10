@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 interface IUser {
   email: string,
   password: string,
-  userName : string,
   phone : number,
   default_address : string,
   amount: number,
@@ -13,7 +12,6 @@ interface IUser {
 interface UserDoc extends mongoose.Document {
   email: string,
   password: string,
-  userName : string,
   phone : number,
   default_address : string,
   amount: number,
@@ -26,7 +24,6 @@ interface UserModel extends mongoose.Model <UserDoc>{
 const userSchema = new mongoose.Schema({
   email : {type: String,required:true, unique:true},
   password : {type: String,required:true},
-  userName : {type: String,required:true, unique: true},
   phone: {type: Number,required:true},
   default_address : {type: String ,required:true},
   amount: {type : Number, default : 0},

@@ -8,7 +8,6 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var userSchema = new mongoose_1.default.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    userName: { type: String, required: true, unique: true },
     phone: { type: Number, required: true },
     default_address: { type: String, required: true },
     amount: { type: Number, default: 0 },

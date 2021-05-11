@@ -9,10 +9,11 @@ var index_1 = __importDefault(require("./routes/index"));
 var cors_1 = __importDefault(require("cors"));
 var App = /** @class */ (function () {
     function App() {
-        this.app = (0, express_1.default)();
+
+        this.app = express_1.default();
+        this.cors();
         this.plugin();
         this.routes();
-        this.cors();
     }
     App.prototype.cors = function () {
         this.app.use((0, cors_1.default)());

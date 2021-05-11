@@ -8,10 +8,12 @@ import cors from 'cors';
 class App {
   public app: Application
   constructor() {
-    this.app = express();
-    this.cors();
-    this.plugin();
-    this.routes();
+
+    this.app = express()
+    this.cors()
+    this.plugin()
+    this.routes()
+    
   }
 
   protected cors():void {
@@ -29,9 +31,6 @@ class App {
   }
 
 }
-
-
-
 const app = new App().app
 app.listen(process.env.PORT, () => console.log(`Server running on port http://localhost:${process.env.PORT}`))
 

@@ -13,7 +13,6 @@ class App {
     this.cors()
     this.plugin()
     this.routes()
-    
   }
 
   protected cors():void {

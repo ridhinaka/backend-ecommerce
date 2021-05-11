@@ -24,12 +24,12 @@ interface ProductModel extends mongoose.Model <ProductDoc> {
 }
 
 const productSchema = new mongoose.Schema({
-  productName : {type:String, required:true},
-  imagePath : {type : String, required: true},
-  price : {type : Number, required: true},
+  productName : {type:String},
+  imagePath : {type : String},
+  price : {type : Number},
   category :  {type : mongoose.Types.ObjectId, ref: 'Category'},
-  stock : {type : Number, required: true},
-  description : {type : String, required: true},
+  stock : {type : Number},
+  description : {type : String},
 })
 
 const Product = mongoose.model <ProductDoc,ProductModel> ('productSchema', productSchema)

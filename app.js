@@ -18,6 +18,7 @@ var App = /** @class */ (function () {
         this.app.use(cors_1.default());
     };
     App.prototype.plugin = function () {
+        this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
         db_1.default();
     };

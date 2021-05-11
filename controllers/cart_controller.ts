@@ -65,17 +65,22 @@ class cartController {
   }
 
   static async getAllCart (req: Request, res: Response) {
+    // const user = (<any>req).Id
     
-    const user = (<any>req).Id
+      const findCartUser = await Cart.find({})
+      res
 
-    try{
-      const findUser = await User.findById(user)
+      res.status(200).json({data:findCartUser})
+    
+    // try{
+    //   const findUser = await User.findById(user)
+    //   console.log(findUser)
 
-      res.status(200).json({msg: "your carts are" + " " + findUser.cart_id})
-    }
-    catch(error){
-      res.status(400).json({msg:error})
-    }
+    //   res.status(200).json({msg: "your carts are" + " " + findUser.cart_id})
+    // }
+    // catch(error){
+    //   res.status(400).json({msg:error})
+    // }
   }
 
   static async deleteCart(req: Request, res: Response) {

@@ -21,6 +21,7 @@ class userController {
     }
     User.create(newUser)
     .then((result) => {
+      console.log("ridhinaka")
         res.status(201).json({msg:"new user created" ,data:result})  
     })
     .catch ((err) => {

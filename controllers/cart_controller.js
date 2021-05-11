@@ -144,31 +144,22 @@ var cartController = /** @class */ (function () {
     };
     cartController.getAllCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var user, findUser, error_1;
+            var findCartUser;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        user = req.Id;
-                        _a.label = 1;
+                    case 0: return [4 /*yield*/, Cart_1.Cart.find({})];
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, Users_1.User.findById(user)];
-                    case 2:
-                        findUser = _a.sent();
-                        res.status(200).json({ msg: "your carts are" + " " + findUser.cart_id });
-                        return [3 /*break*/, 4];
-                    case 3:
-                        error_1 = _a.sent();
-                        res.status(400).json({ msg: error_1 });
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        findCartUser = _a.sent();
+                        res;
+                        res.status(200).json({ data: findCartUser });
+                        return [2 /*return*/];
                 }
             });
         });
     };
     cartController.deleteCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, quantity, product_id, findCartdelete, findProductPrice, userUpdate, error_2;
+            var id, _a, quantity, product_id, findCartdelete, findProductPrice, userUpdate, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -191,7 +182,7 @@ var cartController = /** @class */ (function () {
                         _b.label = 5;
                     case 5: return [3 /*break*/, 7];
                     case 6:
-                        error_2 = _b.sent();
+                        error_1 = _b.sent();
                         res.status(500).json({ message: "your products havent been removed" });
                         return [3 /*break*/, 7];
                     case 7: return [2 /*return*/];

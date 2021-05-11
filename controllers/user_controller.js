@@ -69,6 +69,7 @@ var userController = /** @class */ (function () {
         };
         Users_1.User.create(newUser)
             .then(function (result) {
+            console.log("ridhinaka");
             res.status(201).json({ msg: "new user created", data: result });
         })
             .catch(function (err) {

@@ -10,7 +10,7 @@ var cart_route_1 = __importDefault(require("../routes/cart_route"));
 var order_route_1 = __importDefault(require("../routes/order_route"));
 var Routes = /** @class */ (function () {
     function Routes() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.routes();
         this.user();
         // this.auth()

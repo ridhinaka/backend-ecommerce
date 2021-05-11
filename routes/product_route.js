@@ -7,7 +7,7 @@ var express_1 = require("express");
 var product_controller_1 = __importDefault(require("../controllers/product_controller"));
 var productRoutes = /** @class */ (function () {
     function productRoutes() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.route();
     }
     productRoutes.prototype.route = function () {

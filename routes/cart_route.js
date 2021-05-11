@@ -7,7 +7,7 @@ var express_1 = require("express");
 var cart_controller_1 = __importDefault(require("../controllers/cart_controller"));
 var cartRoutes = /** @class */ (function () {
     function cartRoutes() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.route();
     }
     cartRoutes.prototype.route = function () {

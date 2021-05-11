@@ -1,17 +1,17 @@
-import { Application, Request, Response } from 'express'
-import express from 'express'
-import MongoDB from './configs/db'
-import routes from './routes/index'
-import cors from 'cors'
+import { Application, Request, Response } from 'express';
+import express from 'express';
+import MongoDB from './configs/db';
+import routes from './routes/index';
+import cors from 'cors';
 
 
 class App {
   public app: Application
   constructor() {
-    this.app = express()
-    this.plugin()
-    this.routes()
-    this.cors()
+    this.app = express();
+    this.cors();
+    this.plugin();
+    this.routes();
   }
 
   protected cors():void {
@@ -19,7 +19,8 @@ class App {
   }
 
   protected plugin(): void{
-    this.app.use(express.urlencoded({extended: true}),)
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({extended: true}))
     MongoDB()
   }
 

@@ -64,6 +64,9 @@ var cartController = /** @class */ (function () {
                         return [4 /*yield*/, Cart_1.Cart.create({
                                 user_id: userId,
                                 product_id: req.body.product_id,
+                                productName: req.body.productName,
+                                imagePath: req.body.imagePath,
+                                price: req.body.price,
                                 quantity: req.body.quantity,
                                 total_price: quantity * findProduct.price
                             })];

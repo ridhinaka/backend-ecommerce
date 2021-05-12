@@ -90,7 +90,7 @@ class cartController {
   static async getAllCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
-    const findCart = await Cart.find({userId})
+    const findCart = await Cart.find({})
     Cart.populate(findCart,{path:"product_id"},function(err,findCart){
       // let total = 0
       // for (let i = 0; i < findCart.length; i ++){

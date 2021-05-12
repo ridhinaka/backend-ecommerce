@@ -137,7 +137,7 @@ var cartController = /** @class */ (function () {
     };
     cartController.getAllCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var userId, findCart;
+            var userId, findCart, findPrice, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -145,12 +145,15 @@ var cartController = /** @class */ (function () {
                         return [4 /*yield*/, Cart_1.Cart.find({ userId: userId })];
                     case 1:
                         findCart = _a.sent();
-                        Cart_1.Cart.populate(findCart, { path: "product_id" }, function (err, findCart) {
-                            // let total = 0
+                        return [4 /*yield*/, Products_1.Product.findOne({ user_id: userId })];
+                    case 2:
+                        findPrice = _a.sent();
+                        data = Cart_1.Cart.populate(findCart, { path: "product_id" }, function (err, findCart) {
+                            var total = 0;
                             // for (let i = 0; i < findCart.length; i ++){
-                            //   const findPrice = await Product.findOne({price})
+                            //   total += (findCart[i].quantity * (findCart[i].product_id.price))
                             // }
-                            res.status(200).json({ success: true, });
+                            res.status(200).json({ data: findCart, data_2: data });
                         });
                         return [2 /*return*/];
                 }

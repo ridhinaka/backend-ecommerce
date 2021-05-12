@@ -91,12 +91,13 @@ class cartController {
 
     const userId = (<any>req).Id
     const findCart = await Cart.find({userId})
-    Cart.populate(findCart,{path:"product_id"},function(err,findCart){
-      // let total = 0
+    const findPrice = await Product.findOne({user_id:userId})
+    const data = Cart.populate(findCart,{path:"product_id"},function(err,findCart){
+      let total = 0
       // for (let i = 0; i < findCart.length; i ++){
-      //   const findPrice = await Product.findOne({price})
+      //   total += (findCart[i].quantity * (findCart[i].product_id.price))
       // }
-      res.status(200).json({success:true,})
+      res.status(200).json({data:findCart,data_2:data})
     })
   }
 

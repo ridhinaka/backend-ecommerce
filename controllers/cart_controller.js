@@ -44,66 +44,56 @@ var cartController = /** @class */ (function () {
     }
     cartController.addToCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, product_id, quantity, userId, findProduct, findCart, createCart, updateProduct, updateUser, findCartId, pushToCart, updateStock, err_1;
+            var _a, product_id, quantity, userId, dataCart, findProduct, cart, updateProduct, quantity_1, total, addCart, err_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _a = req.body, product_id = _a.product_id, quantity = _a.quantity;
                         userId = req.Id;
-                        _b.label = 1;
+                        return [4 /*yield*/, Cart_1.Cart.findOne({ user_id: userId, product_id: product_id })];
                     case 1:
-                        _b.trys.push([1, 14, , 15]);
+                        dataCart = _b.sent();
                         return [4 /*yield*/, Products_1.Product.findById(product_id)];
                     case 2:
                         findProduct = _b.sent();
-                        if (!(findProduct.stock > 0)) return [3 /*break*/, 12];
-                        return [4 /*yield*/, Cart_1.Cart.findOne({ user_id: userId })];
+                        _b.label = 3;
                     case 3:
-                        findCart = _b.sent();
-                        if (!(findCart === null)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, Cart_1.Cart.create({
-                                user_id: userId,
-                                product_id: req.body.product_id,
-                                productName: req.body.productName,
-                                imagePath: req.body.imagePath,
-                                price: req.body.price,
-                                quantity: req.body.quantity,
-                                total_price: quantity * findProduct.price
-                            })];
+                        _b.trys.push([3, 11, , 12]);
+                        if (!(findProduct.stock > 0)) return [3 /*break*/, 9];
+                        if (!(dataCart === null)) return [3 /*break*/, 5];
+                        cart = new Cart_1.Cart({
+                            user_id: userId,
+                            product_id: product_id,
+                            quantity: quantity,
+                            total_price: quantity * findProduct.price
+                        });
+                        return [4 /*yield*/, Products_1.Product.findByIdAndUpdate(product_id, { $set: { quantity: findProduct.stock - 1 } })];
                     case 4:
-                        createCart = _b.sent();
-                        return [4 /*yield*/, Products_1.Product.findByIdAndUpdate(product_id, { $inc: { stock: -quantity } }, { new: true })];
-                    case 5:
                         updateProduct = _b.sent();
-                        return [4 /*yield*/, Users_1.User.findByIdAndUpdate(userId, {
-                                $push: { cart_id: createCart._id },
-                                $inc: { amount: createCart.total_price }
-                            }, { new: true })];
+                        cart.save();
+                        res.status(200).json({ success: true, data: cart });
+                        return [3 /*break*/, 8];
+                    case 5:
+                        quantity_1 = dataCart.quantity;
+                        total = (quantity_1 + 1) * findProduct.price;
+                        return [4 /*yield*/, Cart_1.Cart.findOneAndUpdate({ product_id: product_id }, { $set: { quantity: quantity_1 + 1, total_price: total } }, { new: true })];
                     case 6:
-                        updateUser = _b.sent();
-                        res.status(201).json({ msg: "Congrats, your product was added to cart", data: createCart });
-                        return [3 /*break*/, 11];
-                    case 7: return [4 /*yield*/, Cart_1.Cart.findOne({ user_id: userId })];
-                    case 8:
-                        findCartId = _b.sent();
-                        return [4 /*yield*/, Cart_1.Cart.findByIdAndUpdate(findCartId.id, { $push: { product_id: findProduct.id }, $inc: { quantity: quantity, total_price: quantity * findProduct.price } }, { new: true })];
+                        addCart = _b.sent();
+                        return [4 /*yield*/, Products_1.Product.findByIdAndUpdate(product_id, { $set: { stock: findProduct.stock - 1 } })];
+                    case 7:
+                        _b.sent();
+                        res.status(200).json({ data: dataCart });
+                        _b.label = 8;
+                    case 8: return [3 /*break*/, 10];
                     case 9:
-                        pushToCart = _b.sent();
-                        return [4 /*yield*/, Products_1.Product.findByIdAndUpdate(product_id, { $inc: { stock: -quantity } }, { new: true })];
-                    case 10:
-                        updateStock = _b.sent();
-                        res.status(200).json({ msg: "your product was added", data: pushToCart });
-                        _b.label = 11;
-                    case 11: return [3 /*break*/, 13];
-                    case 12:
-                        res.status(200).json({ msg: "stock is not available" });
-                        _b.label = 13;
-                    case 13: return [3 /*break*/, 15];
-                    case 14:
+                        res.status(500);
+                        _b.label = 10;
+                    case 10: return [3 /*break*/, 12];
+                    case 11:
                         err_1 = _b.sent();
                         res.status(200).json({ msg: "your product have been added, please kindly go to your cart :)", err: err_1 });
-                        return [3 /*break*/, 15];
-                    case 15: return [2 /*return*/];
+                        return [3 /*break*/, 12];
+                    case 12: return [2 /*return*/];
                 }
             });
         });
@@ -147,30 +137,29 @@ var cartController = /** @class */ (function () {
     };
     cartController.getAllCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var findCartUser, error_1;
+            var userId, findCart;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, Cart_1.Cart.find({})];
+                        userId = req.Id;
+                        return [4 /*yield*/, Cart_1.Cart.find({ userId: userId })];
                     case 1:
-                        findCartUser = _a.sent();
-                        Cart_1.Cart.populate(findCartUser, { path: "product_id" }, function (err, findCartUser) {
-                            res.status(200).json({ data: findCartUser });
+                        findCart = _a.sent();
+                        Cart_1.Cart.populate(findCart, { path: "product_id" }, function (err, findCart) {
+                            // let total = 0
+                            // for (let i = 0; i < findCart.length; i ++){
+                            //   total += (findCart[i].quantity * (findCart[i].product_id.price))
+                            // }
+                            res.status(200).json({ success: true, });
                         });
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _a.sent();
-                        res.status(500).json({ msg: "error get cart" });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [2 /*return*/];
                 }
             });
         });
     };
     cartController.deleteCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, _a, quantity, product_id, findCartdelete, findProductPrice, userUpdate, error_2;
+            var id, _a, quantity, product_id, findCartdelete, findProductPrice, userUpdate, error_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -193,7 +182,7 @@ var cartController = /** @class */ (function () {
                         _b.label = 5;
                     case 5: return [3 /*break*/, 7];
                     case 6:
-                        error_2 = _b.sent();
+                        error_1 = _b.sent();
                         res.status(500).json({ message: "your products havent been removed" });
                         return [3 /*break*/, 7];
                     case 7: return [2 /*return*/];

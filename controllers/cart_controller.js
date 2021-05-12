@@ -142,13 +142,13 @@ var cartController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         userId = req.Id;
-                        return [4 /*yield*/, Cart_1.Cart.find({})];
+                        return [4 /*yield*/, Cart_1.Cart.find({ userId: userId })];
                     case 1:
                         findCart = _a.sent();
                         Cart_1.Cart.populate(findCart, { path: "product_id" }, function (err, findCart) {
                             // let total = 0
                             // for (let i = 0; i < findCart.length; i ++){
-                            //   total += (findCart[i].quantity * (findCart[i].product_id.price))
+                            //   const findPrice = await Product.findOne({price})
                             // }
                             res.status(200).json({ success: true, });
                         });

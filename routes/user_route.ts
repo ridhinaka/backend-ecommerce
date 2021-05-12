@@ -13,9 +13,10 @@ class userRoutes implements IRoutes{
     this.router.post('/user/create',userController.register_new_user)
     this.router.post('/user/login',userController.loginUser)
 
-    // this.router.use(authJwt.authentication)
+ 
     this.router.get('/user',userController.getUser)
     this.router.get('/user:id',userController.getUser)
+    this.router.use(authJwt.authentication)
   }
 }
 

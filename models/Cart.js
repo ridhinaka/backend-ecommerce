@@ -7,7 +7,7 @@ exports.Cart = void 0;
 var mongoose_1 = __importDefault(require("mongoose"));
 var cartSchema = new mongoose_1.default.Schema({
     user_id: { type: mongoose_1.default.Types.ObjectId, ref: 'User' },
-    product_id: [{ type: mongoose_1.default.Types.ObjectId, ref: 'productSchema' }],
+    product_id: { type: mongoose_1.default.Types.ObjectId, ref: 'productSchema' },
     total_price: { type: Number, default: 0 },
     quantity: { type: Number }
 });

@@ -96,6 +96,7 @@ class cartController {
       let total = 0
       for (let i = 0; i < findCart.length; i ++){
         total += (findCart[i].quantity * (findCart[i].total_price))
+        res.status(200).json({msg:total})
       }
       res.status(200).json({data:findCart,data_2:data})
     })

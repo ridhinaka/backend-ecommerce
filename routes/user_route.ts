@@ -16,7 +16,7 @@ class userRoutes implements IRoutes{
  
     this.router.get('/user',userController.getUser)
     this.router.get('/user:id',userController.getUser)
-    this.router.use(authJwt.authentication)
+    // this.router.use(authJwt.authentication)
   }
 }
 

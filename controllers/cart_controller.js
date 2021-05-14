@@ -150,9 +150,10 @@ var cartController = /** @class */ (function () {
                         findPrice = _a.sent();
                         data = Cart_1.Cart.populate(findCart, { path: "product_id" }, function (err, findCart) {
                             var total = 0;
-                            // for (let i = 0; i < findCart.length; i ++){
-                            //   total += (findCart[i].quantity * (findCart[i].product_id.price))
-                            // }
+                            for (var i = 0; i < findCart.length; i++) {
+                                total += (findCart[i].quantity * (findCart[i].total_price));
+                                res.status(200).json({ msg: total });
+                            }
                             res.status(200).json({ data: findCart, data_2: data });
                         });
                         return [2 /*return*/];

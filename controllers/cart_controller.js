@@ -152,7 +152,6 @@ var cartController = /** @class */ (function () {
                             var total = 0;
                             for (var i = 0; i < findCart.length; i++) {
                                 total += (findCart[i].quantity * (findCart[i].total_price));
-                                res.status(200).json({ msg: total });
                             }
                             res.status(200).json({ data: findCart, data_2: data });
                         });

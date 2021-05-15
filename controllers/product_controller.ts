@@ -30,6 +30,18 @@ class productController {
     const findProduct = await Product.find({})
     res.status(200).json({data:findProduct})
   }
+  
+  static async getDetailProduct (req: Request, res: Response){
+    const {id} = req.params
+
+    try{
+      const findDetailProduct = await Product.findById(id)
+      res.status(200).json({msg:findDetailProduct})
+    }
+    catch{
+      res.status(500)
+    }
+  }
 }
 
 export default productController

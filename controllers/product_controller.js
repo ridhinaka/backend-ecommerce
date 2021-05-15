@@ -83,7 +83,7 @@ var productController = /** @class */ (function () {
                         return [4 /*yield*/, Products_1.Product.findById(id)];
                     case 2:
                         findDetailProduct = _b.sent();
-                        res.status(200).json({ findDetailProduct: findDetailProduct });
+                        res.status(200).json({ msg: findDetailProduct });
                         return [3 /*break*/, 4];
                     case 3:
                         _a = _b.sent();

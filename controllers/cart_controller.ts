@@ -110,7 +110,7 @@ class cartController {
       const findCartdelete = await Cart.findById(id)
       const findProductPrice = await Product.findById(product_id)
       if(findCartdelete){
-        const userUpdate = await Cart.findByIdAndUpdate(id,{$pull:{product_id:product_id},$inc:{quantity:-quantity,total_price: -(quantity * findProductPrice.price )}},{new:true})
+        const userUpdate = await Cart.findByIdAndDelete(id)
         res.status(200).json({message:"your products have been removed"})
       }
     } catch (error) {

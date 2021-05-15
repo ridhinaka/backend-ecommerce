@@ -116,6 +116,17 @@ class cartController {
       res.status(500).json({message:"your products havent been removed"})
     }
   }
+
+  static async deleteAll (req:Request, res:Response){
+
+    try{
+      const findAll = await Cart.findOneAndDelete({})
+    res.status(200).json({msg:findAll})
+    }
+    catch{
+      res.status(500)
+    }
+  }
 }
 
 export default cartController;

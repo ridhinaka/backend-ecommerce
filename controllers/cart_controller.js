@@ -170,25 +170,44 @@ var cartController = /** @class */ (function () {
                         _a = req.body, quantity = _a.quantity, product_id = _a.product_id;
                         _b.label = 1;
                     case 1:
-                        _b.trys.push([1, 6, , 7]);
+                        _b.trys.push([1, 5, , 6]);
                         return [4 /*yield*/, Cart_1.Cart.findById(id)];
                     case 2:
                         findCartdelete = _b.sent();
                         return [4 /*yield*/, Products_1.Product.findById(product_id)];
                     case 3:
                         findProductPrice = _b.sent();
-                        if (!findCartdelete) return [3 /*break*/, 5];
-                        return [4 /*yield*/, Cart_1.Cart.findByIdAndUpdate(id, { $pull: { product_id: product_id }, $inc: { quantity: -quantity, total_price: -(quantity * findProductPrice.price) } }, { new: true })];
+                        return [4 /*yield*/, Cart_1.Cart.findByIdAndDelete(id)];
                     case 4:
                         userUpdate = _b.sent();
                         res.status(200).json({ message: "your products have been removed" });
-                        _b.label = 5;
-                    case 5: return [3 /*break*/, 7];
-                    case 6:
+                        return [3 /*break*/, 6];
+                    case 5:
                         error_1 = _b.sent();
                         res.status(500).json({ message: "your products havent been removed" });
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    cartController.deleteAll = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var findAll, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, Cart_1.Cart.findOneAndDelete({})];
+                    case 1:
+                        findAll = _b.sent();
+                        res.status(200).json({ msg: findAll });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        _a = _b.sent();
+                        res.status(500);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

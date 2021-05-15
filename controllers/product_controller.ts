@@ -36,7 +36,7 @@ class productController {
 
     try{
       const findDetailProduct = await Product.findById(id)
-      res.status(200).json({msg:findDetailProduct})
+      res.status(200).json({findDetailProduct})
     }
     catch{
       res.status(500)

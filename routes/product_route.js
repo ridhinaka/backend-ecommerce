@@ -13,6 +13,7 @@ var productRoutes = /** @class */ (function () {
     productRoutes.prototype.route = function () {
         this.router.get('/product', product_controller_1.default.get_product);
         this.router.post('/product/create', product_controller_1.default.add_product);
+        this.router.get('/product/:id', product_controller_1.default.getDetailProduct);
     };
     return productRoutes;
 }());

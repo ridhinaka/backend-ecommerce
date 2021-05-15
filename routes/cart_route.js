@@ -12,6 +12,7 @@ var cartRoutes = /** @class */ (function () {
     }
     cartRoutes.prototype.route = function () {
         this.router.get('/cart', cart_controller_1.default.getAllCart);
+        this.router.delete('/cart/delete', cart_controller_1.default.deleteAll);
         this.router.post('/cart/push', cart_controller_1.default.addToCart);
         this.router.patch('/cart/update/:id', cart_controller_1.default.updateCart);
         this.router.delete('/cart/:id', cart_controller_1.default.deleteCart);

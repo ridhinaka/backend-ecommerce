@@ -70,6 +70,30 @@ var productController = /** @class */ (function () {
             });
         });
     };
+    productController.getDetailProduct = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, findDetailProduct, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        id = req.params.id;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, Products_1.Product.findById(id)];
+                    case 2:
+                        findDetailProduct = _b.sent();
+                        res.status(200).json({ findDetailProduct: findDetailProduct });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        _a = _b.sent();
+                        res.status(500);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return productController;
 }());
 exports.default = productController;

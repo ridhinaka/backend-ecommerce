@@ -90,8 +90,9 @@ class cartController {
   static async allCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
-    console.log(userId)
+    // console.log(userId)
     const findCart = await Cart.find({userId})
+    console.log("findcart bos" + findCart)
     const findPrice = await Product.findOne({user_id:userId})
     const data = Cart.populate(findCart,{path:"product_id"},function(err,findCart){
       let total = 0
@@ -99,7 +100,8 @@ class cartController {
         total += (findCart[i].quantity * (findCart[i].total_price))
       }
       res.status(200).json({data:findCart,data_2:data})
-    }) 
+    })  
+    console.log("ini adalah" + data)
   }
 
   static async deleteCart(req: Request, res: Response) {

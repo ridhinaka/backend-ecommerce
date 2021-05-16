@@ -15,6 +15,7 @@ class mongoDB {
     db.on('error', console.error.bind(console, 'Connection error :'))
     db.once('open', () => {
       console.log("ridhinaka")
+      console.log( "kocak")
     })
   }
 }

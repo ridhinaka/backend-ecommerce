@@ -18,6 +18,7 @@ var mongoDB = /** @class */ (function () {
         db.on('error', console.error.bind(console, 'Connection error :'));
         db.once('open', function () {
             console.log("ridhinaka");
+            console.log("kocak");
         });
     };
     return mongoDB;

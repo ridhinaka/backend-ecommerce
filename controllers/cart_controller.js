@@ -143,10 +143,10 @@ var cartController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         userId = req.Id;
-                        console.log(userId);
                         return [4 /*yield*/, Cart_1.Cart.find({ userId: userId })];
                     case 1:
                         findCart = _a.sent();
+                        console.log("findcart bos" + findCart);
                         return [4 /*yield*/, Products_1.Product.findOne({ user_id: userId })];
                     case 2:
                         findPrice = _a.sent();
@@ -157,6 +157,7 @@ var cartController = /** @class */ (function () {
                             }
                             res.status(200).json({ data: findCart, data_2: data });
                         });
+                        console.log("ini adalah" + data);
                         return [2 /*return*/];
                 }
             });

@@ -11,7 +11,7 @@ class orderController {
     try {
         const createOrder = await new Order({cart_id})
         return createOrder.save(function(err){
-          Order.populate(createOrder,{path:"cart_id"},function(err, createOrder) {  
+          Order.populate(createOrder,{path:"user_id"},function(err, createOrder) {  
             res.status(200).json({msg:createOrder})
           })      
         }) 

@@ -54,7 +54,7 @@ var orderController = /** @class */ (function () {
                     case 2:
                         createOrder_1 = _b.sent();
                         return [2 /*return*/, createOrder_1.save(function (err) {
-                                Order_1.Order.populate(createOrder_1, { path: "cart_id" }, function (err, createOrder) {
+                                Order_1.Order.populate(createOrder_1, { path: "user_id" }, function (err, createOrder) {
                                     res.status(200).json({ msg: createOrder });
                                 });
                             })];

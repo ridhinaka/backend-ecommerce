@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 
 interface IOrder {
-  user_id : string[],
+  user_id : string,
   cart_id : string,
 }
 
 interface OrderDoc extends mongoose.Document {
-  user_id : string[],
+  user_id : string,
   cart_id : string,
 }
 

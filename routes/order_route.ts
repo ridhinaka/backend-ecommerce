@@ -10,6 +10,7 @@ class orderRoutes implements IRoutes{
     this.route()
   }
   route(): void {
+    this.router.get('/order/allorder',orderController.getOrder)
     this.router.post('/order/create',orderController.createOrder)
   }
 }

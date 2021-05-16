@@ -8,9 +8,8 @@ class orderController {
   static async getOrder (req:Request, res:Response) {
     const userId = (<any>req).Id
     const findOrder = await Order.find({user_id:userId})
-
     const dataOrder = Order.populate(findOrder,{path:"user_id"},function(err,findOrder){
-      res.status(200).json({msg:"your order have been processed",data:findOrder})
+      res.status(200).json({msg:"your order have been processed",data:findOrder,data2:dataOrder})
     })
   }
 

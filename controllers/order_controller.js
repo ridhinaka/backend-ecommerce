@@ -51,7 +51,7 @@ var orderController = /** @class */ (function () {
                     case 1:
                         findOrder = _a.sent();
                         dataOrder = Order_1.Order.populate(findOrder, { path: "user_id" }, function (err, findOrder) {
-                            res.status(200).json({ msg: "your order have been processed", data: findOrder });
+                            res.status(200).json({ msg: "your order have been processed", data: findOrder, data2: dataOrder });
                         });
                         return [2 /*return*/];
                 }

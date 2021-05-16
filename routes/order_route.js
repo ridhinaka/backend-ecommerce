@@ -11,6 +11,7 @@ var orderRoutes = /** @class */ (function () {
         this.route();
     }
     orderRoutes.prototype.route = function () {
+        this.router.get('/order/allorder', order_controller_1.default.getOrder);
         this.router.post('/order/create', order_controller_1.default.createOrder);
     };
     return orderRoutes;

@@ -11,8 +11,8 @@ class Routes {
   constructor() {
       this.router = Router()
       this.routes()
-      this.user()
       this.product()
+      this.user()
       this.auth()
       this.cart()
       this.order()
@@ -24,12 +24,12 @@ class Routes {
       res.status(200).json({ msg: "welcome to mobile legend" });
     })
   }
-  public user(): void{
-      this.router.use(userRoutes)
-  }
-
   public product() :void{
     this.router.use(productRoutes)
+  }
+  
+  public user(): void{
+      this.router.use(userRoutes)
   }
 
   public auth() :void{

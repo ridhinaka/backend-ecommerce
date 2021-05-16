@@ -13,8 +13,8 @@ var Routes = /** @class */ (function () {
     function Routes() {
         this.router = express_1.Router();
         this.routes();
-        this.user();
         this.product();
+        this.user();
         this.auth();
         this.cart();
         this.order();
@@ -24,11 +24,11 @@ var Routes = /** @class */ (function () {
             res.status(200).json({ msg: "welcome to mobile legend" });
         });
     };
-    Routes.prototype.user = function () {
-        this.router.use(user_route_1.default);
-    };
     Routes.prototype.product = function () {
         this.router.use(product_route_1.default);
+    };
+    Routes.prototype.user = function () {
+        this.router.use(user_route_1.default);
     };
     Routes.prototype.auth = function () {
         this.router.use(auth_Jwt_1.default.authentication);

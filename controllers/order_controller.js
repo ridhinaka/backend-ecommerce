@@ -40,6 +40,24 @@ var Order_1 = require("../models/Order");
 var orderController = /** @class */ (function () {
     function orderController() {
     }
+    orderController.getOrder = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var userId, findOrder, dataOrder;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        userId = req.Id;
+                        return [4 /*yield*/, Order_1.Order.find({ user_id: userId })];
+                    case 1:
+                        findOrder = _a.sent();
+                        dataOrder = Order_1.Order.populate(findOrder, { path: "user_id" }, function (err, findOrder) {
+                            res.status(200).json({ msg: "your order have been processed", data: findOrder });
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     orderController.createOrder = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var cart_id, createOrder_1, _a;

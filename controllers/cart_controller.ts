@@ -35,32 +35,6 @@ class cartController {
       }else{
         res.status(500)
       }
-      // if(findProduct.stock > 0){
-      //   const findCart = await Cart.findOne({user_id:userId})
-      //   if(findCart === null){   
-      //     const createCart = await Cart.create({
-      //       user_id : userId,
-      //       product_id : product_id,
-      //       quantity : quantity,
-      //       total_price : quantity * findProduct.price
-      //     })
-      //     const updateProduct = await Product.findByIdAndUpdate(product_id,{$inc:{stock: - quantity}},{new:true}) 
-      //     const updateUser = await User.findByIdAndUpdate(userId, 
-      //       {
-      //         $push:{cart_id:createCart._id},
-      //         $inc : {amount : createCart.total_price }
-      //       },
-      //       {new:true})
-      //       res.status(201).json({msg:"Congrats, your product was added to cart", data: createCart})
-        // }else{
-          // const findCartId = await Cart.findOne({user_id:userId})
-          // const pushToCart = await Cart.findByIdAndUpdate(findCartId.id,{$push:{product_id:findProduct.id},$inc:{quantity:quantity,total_price: quantity * findProduct.price}},{new:true})
-          // const updateStock = await Product.findByIdAndUpdate(product_id,{$inc:{stock: - quantity}},{new:true})
-          // res.status(200).json({msg:"your product was added",data:pushToCart})
-      //   }
-      // }else{
-      //   res.status(200).json({msg:"stock is not available"})
-      // }
     }
     catch(err){
       res.status(200).json({msg:"your product have been added, please kindly go to your cart :)",err})
@@ -90,21 +64,14 @@ class cartController {
   static async allCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
-    console.log(userId)
     const findCart = await Cart.find({user_id:userId})
-    console.log(typeof userId)
-    console.log("findcart bos" + findCart)
-    console.log(findCart)
-    const findPrice = await Product.findOne({user_id:userId})
     const data = Cart.populate(findCart,{path:"product_id"},function(err,findCart){
-      // let total = 0
-      // for (let i = 0; i < findCart.length; i ++){
-      //   total += (findCart[i].quantity * (findCart[i].total_price))
-      // }
-      console.log("saya adalah" + data)
+      let total = 0
+      for (let i = 0; i < findCart.length; i ++){
+        total += (findCart[i].quantity * (findCart[i].total_price))
+      }
       res.status(200).json({data:findCart,data_2:data})
     })  
-    console.log("ini adalah" + data)
   }
 
   static async deleteCart(req: Request, res: Response) {

@@ -98,7 +98,7 @@ class cartController {
         total += (findCart[i].quantity * (findCart[i].total_price))
       }
       res.status(200).json({data:findCart,data_2:data})
-    })
+    }) 
   }
 
   static async deleteCart(req: Request, res: Response) {

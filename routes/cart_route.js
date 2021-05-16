@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var cart_controller_1 = __importDefault(require("../controllers/cart_controller"));
-var auth_Jwt_1 = __importDefault(require("../middlewares/auth_Jwt"));
 var cartRoutes = /** @class */ (function () {
     function cartRoutes() {
         this.router = express_1.Router();
@@ -13,7 +12,7 @@ var cartRoutes = /** @class */ (function () {
     }
     cartRoutes.prototype.route = function () {
         this.router.get('/allcart', cart_controller_1.default.allCart);
-        this.router.use(auth_Jwt_1.default.authentication);
+        // this.router.use(authJwt.authentication)
         this.router.delete('/cart/delete', cart_controller_1.default.deleteAll);
         this.router.post('/cart/push', cart_controller_1.default.addToCart);
         this.router.patch('/cart/update/:id', cart_controller_1.default.updateCart);

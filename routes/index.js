@@ -16,7 +16,7 @@ var Routes = /** @class */ (function () {
         this.product();
         this.user();
         this.cart();
-        this.auth();
+        // this.auth()
         this.order();
     }
     Routes.prototype.routes = function () {
@@ -30,11 +30,11 @@ var Routes = /** @class */ (function () {
     Routes.prototype.user = function () {
         this.router.use(user_route_1.default);
     };
-    Routes.prototype.auth = function () {
-        this.router.use(auth_Jwt_1.default.authentication);
-    };
     Routes.prototype.cart = function () {
         this.router.use(cart_route_1.default);
+    };
+    Routes.prototype.auth = function () {
+        this.router.use(auth_Jwt_1.default.authentication);
     };
     Routes.prototype.order = function () {
         this.router.use(order_route_1.default);

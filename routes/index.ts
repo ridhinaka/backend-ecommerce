@@ -14,7 +14,7 @@ class Routes {
       this.product()
       this.user()
       this.cart()
-      this.auth()
+      // this.auth()
       this.order()
   }
   
@@ -31,12 +31,11 @@ class Routes {
       this.router.use(userRoutes)
   }
 
-  public auth() :void{
-    this.router.use(auth_Jwt.authentication)
-  }
-
   public cart() :void{
     this.router.use(cartRoutes)
+  }
+  public auth() :void{
+    this.router.use(auth_Jwt.authentication)
   }
 
   public order() :void{

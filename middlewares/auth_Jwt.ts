@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 
 class authJwt {
   static authentication(req: Request, res: Response, next: NextFunction) {
-    const accessToken:any = req.headers.accesstoken
+    const accessToken:any = req.headers.accessToken
     if (!accessToken) {
         return res.status(401).json({msg: 'Missing access token', success: false})
     }

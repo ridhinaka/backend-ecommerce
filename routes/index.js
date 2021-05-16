@@ -8,13 +8,14 @@ var user_route_1 = __importDefault(require("../routes/user_route"));
 var product_route_1 = __importDefault(require("../routes/product_route"));
 var cart_route_1 = __importDefault(require("../routes/cart_route"));
 var order_route_1 = __importDefault(require("../routes/order_route"));
+var auth_Jwt_1 = __importDefault(require("../middlewares/auth_Jwt"));
 var Routes = /** @class */ (function () {
     function Routes() {
         this.router = express_1.Router();
         this.routes();
         this.product();
         this.user();
-        // this.auth()
+        this.auth();
         this.cart();
         this.order();
     }
@@ -29,9 +30,9 @@ var Routes = /** @class */ (function () {
     Routes.prototype.user = function () {
         this.router.use(user_route_1.default);
     };
-    // public auth() :void{
-    //   this.router.use(auth_Jwt.authentication)
-    // }
+    Routes.prototype.auth = function () {
+        this.router.use(auth_Jwt_1.default.authentication);
+    };
     Routes.prototype.cart = function () {
         this.router.use(cart_route_1.default);
     };

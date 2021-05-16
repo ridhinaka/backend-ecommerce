@@ -9,7 +9,7 @@ class cartRoutes implements IRoutes{
     this.route()
   }
   route(): void {
-    this.router.get('/cart',cartController.getAllCart)
+    this.router.get('/allcart',cartController.allCart)
     this.router.delete('/cart/delete',cartController.deleteAll)
     this.router.post('/cart/push',cartController.addToCart)
     this.router.patch('/cart/update/:id',cartController.updateCart)

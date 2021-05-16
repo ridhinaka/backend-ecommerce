@@ -48,6 +48,7 @@ var cartController = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        console.log("wellington dumalang");
                         _a = req.body, product_id = _a.product_id, quantity = _a.quantity;
                         userId = req.Id;
                         return [4 /*yield*/, Cart_1.Cart.findOne({ user_id: userId, product_id: product_id })];
@@ -135,7 +136,7 @@ var cartController = /** @class */ (function () {
             });
         });
     };
-    cartController.getAllCart = function (req, res) {
+    cartController.allCart = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var userId, findCart, findPrice, data;
             return __generator(this, function (_a) {

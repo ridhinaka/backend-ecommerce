@@ -7,11 +7,11 @@ class cartController {
   constructor() {}
 
   static async addToCart(req: Request, res: Response) {
+    console.log("wellington dumalang")
     const { product_id, quantity } = req.body;
     const userId = (<any>req).Id
     const dataCart = await Cart.findOne({user_id:userId,product_id:product_id})
     const findProduct = await Product.findById(product_id)
-
     try{
       if(findProduct.stock > 0){
         if(dataCart === null){
@@ -87,7 +87,7 @@ class cartController {
     }
   }
 
-  static async getAllCart (req: Request, res: Response) {
+  static async allCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
     const findCart = await Cart.find({userId})

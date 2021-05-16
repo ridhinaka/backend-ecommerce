@@ -90,6 +90,7 @@ class cartController {
   static async allCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
+    console.log(userId)
     const findCart = await Cart.find({userId})
     const findPrice = await Product.findOne({user_id:userId})
     const data = Cart.populate(findCart,{path:"product_id"},function(err,findCart){

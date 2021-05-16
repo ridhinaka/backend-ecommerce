@@ -90,8 +90,8 @@ class cartController {
   static async allCart (req: Request, res: Response) {
 
     const userId = (<any>req).Id
-    // console.log(userId)
-    const findCart = await Cart.find({userId})
+    console.log(userId)
+    const findCart = await Cart.find({user_id:userId})
     console.log(typeof userId)
     console.log("findcart bos" + findCart)
     console.log(findCart)

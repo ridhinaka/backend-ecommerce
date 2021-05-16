@@ -143,7 +143,8 @@ var cartController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         userId = req.Id;
-                        return [4 /*yield*/, Cart_1.Cart.find({ userId: userId })];
+                        console.log(userId);
+                        return [4 /*yield*/, Cart_1.Cart.find({ user_id: userId })];
                     case 1:
                         findCart = _a.sent();
                         console.log(typeof userId);

@@ -13,8 +13,8 @@ class Routes {
       this.routes()
       this.product()
       this.user()
-      this.cart()
       this.auth()
+      this.cart()
       this.order()
   }
   

@@ -24,7 +24,7 @@ var authJwt = /** @class */ (function () {
     function authJwt() {
     }
     authJwt.authentication = function (req, res, next) {
-        var accessToken = req.headers.accesstoken;
+        var accessToken = req.headers.accessToken;
         if (!accessToken) {
             console.log("missing acces token");
             return res.status(401).json({ msg: 'Missing access token', success: false });

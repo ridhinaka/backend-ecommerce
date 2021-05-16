@@ -16,7 +16,7 @@ var Routes = /** @class */ (function () {
         this.product();
         this.user();
         this.cart();
-        // this.auth()
+        this.auth();
         this.order();
     }
     Routes.prototype.routes = function () {

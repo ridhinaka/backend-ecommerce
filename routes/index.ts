@@ -14,7 +14,7 @@ class Routes {
       this.product()
       this.user()
       this.cart()
-      // this.auth()
+      this.auth()
       this.order()
   }
   

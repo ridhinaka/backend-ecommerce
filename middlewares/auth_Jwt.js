@@ -26,6 +26,7 @@ var authJwt = /** @class */ (function () {
     authJwt.authentication = function (req, res, next) {
         var accessToken = req.headers.accesstoken;
         if (!accessToken) {
+            console.log("missing acces token");
             return res.status(401).json({ msg: 'Missing access token', success: false });
         }
         var secretKey = process.env.SECRET_KEY;
